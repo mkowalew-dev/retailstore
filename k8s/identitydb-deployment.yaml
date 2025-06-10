@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identitydb
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identitydb
+  template:
+    metadata:
+      labels:
+        app: identitydb
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MARIADB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: identitydb-secret
+                  key: MARIADB_ROOT_USERNAME
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: identitydb-secret
+                  key: MARIADB_ROOT_PASSWORD
+          volumeMounts:
+            - name: mariadb-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mariadb-persistent-storage
+          persistentVolumeClaim:
+            claimName: identity-pvc
