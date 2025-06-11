@@ -1,4 +1,4 @@
-import { OAuthClients, OAuthUsers, OAuthTokens, sequelize } from './models/index';
+import { OAuthClients, OAuthUsers, OAuthTokens, sequelize } from './models/model.js';
 import bcrypt from 'bcrypt';
 
 async function seedDatabase() {
@@ -8,12 +8,12 @@ async function seedDatabase() {
         console.log('Database synced!');
 
         // Hash passwords for users
-        const hashedPassword = await bcrypt.hash('userpassword', 10); // Replace with actual passwords
+        const hashedPassword = await bcrypt.hash('demo123', 10); // Replace with actual passwords
 
         // Seed users
         const users = [
-            { username: 'testuser', password: hashedPassword },
-            { username: 'admin', password: await bcrypt.hash('adminpassword', 10) }, // Admin account
+            { username: 'presales1', password: hashedPassword },
+            { username: 'presales2', password: hashedPassword },
         ];
         await OAuthUsers.bulkCreate(users);
         console.log('Users seeded!');
@@ -21,13 +21,13 @@ async function seedDatabase() {
         // Seed clients
         const clients = [
             {
-                clientId: 'client1',
-                clientSecret: 'client1secret',
+                clientId: 'presales1',
+                clientSecret: 'presales1secret',
                 grants: 'password,refresh_token',
             },
             {
-                clientId: 'client2',
-                clientSecret: 'client2secret',
+                clientId: 'presales2',
+                clientSecret: 'presales2secret',
                 grants: 'password,refresh_token',
             },
         ];

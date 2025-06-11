@@ -1,4 +1,4 @@
-import { OAuthClients, OAuthTokens, OAuthUsers } from './index';
+import { OAuthClients, OAuthTokens, OAuthUsers } from './models/model.js';
 
 export default {
     getAccessToken: async (accessToken) => {

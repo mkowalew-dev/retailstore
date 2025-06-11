@@ -16,7 +16,7 @@ spec:
         app: auth-service
     spec:
       containers:
-        - name: auth-service
+        - name: auth-api-service
           image: your-dockerhub-username/auth-service:latest
           env:
             - name: MARIADB_HOST

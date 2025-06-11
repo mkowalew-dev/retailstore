@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import OAuth2Server from 'node-oauth2-server';
 import dotenv from 'dotenv';
-import { sequelize } from './models'; // Sequelize instance
+import { sequelize } from './models/model.js'; // Sequelize instance
 import oauthModel from './oauthModel.js'; // Custom OAuth2 model
 
 dotenv.config();
@@ -18,10 +18,10 @@ app.oauth = new OAuth2Server({
 });
 
 // Token endpoint
-app.post('/oauth/token', app.oauth.token());
+app.post('/oauth/token', app.oauth.grant());
 
 // Centralized token validation endpoint
-app.get('/oauth/validate', app.oauth.authenticate(), (req, res) => {
+app.get('/oauth/validate', app.oauth.authorise(), (req, res) => {
     res.send({ message: 'Token is valid', user: req.user });
 });
 
