@@ -22,22 +22,22 @@ spec:
             - name: MARIADB_HOST
               valueFrom:
                 secretKeyRef:
-                  name: identitydb-creds
+                  name: identitydb-secret
                   key: MARIADB_HOST
             - name: MARIADB_USER
               valueFrom:
                 secretKeyRef:
-                  name: identitydb-creds
+                  name: identitydb-secret
                   key: MARIADB_ROOT_USER
             - name: MARIADB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: identitydb-creds
+                  name: identitydb-secret
                   key: MARIADB_ROOT_PASSWORD
             - name: MARIADB_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: identitydb-creds
+                  name: identitydb-secret
                   key: MARIADB_DATABASE
           ports:
             - containerPort: 3000
