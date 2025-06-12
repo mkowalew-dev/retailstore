@@ -1,8 +1,10 @@
 # retailstore
 
 Testing the OAuth2 API
-curl -X POST http://34.123.45.67:3000/oauth/token -d 'grant_type=password&username=test&password=testpassword'
-Access the /oauth/token endpoint to generate tokens:
-Use Postman or curl to send a POST request.
-Access the /oauth/validate endpoint to validate tokens:
-Other microservices can call this endpoint for token validation.
+curl -X POST http://localhost:3000/oauth/token \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "grant_type=password&username=presales1&password=demo123&client_id=presales1&client_secret=presales1secret"
+
+curl -X GET http://localhost:3000/secure \
+-H "Authorization: Bearer 5331e07ce109ecdfe2dc1b943d92d0f041c44975"
+

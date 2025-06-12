@@ -1,4 +1,4 @@
-import { OAuthClients, OAuthUsers, OAuthTokens, sequelize } from './models/model.js';
+import sequelize, { Client, User, Token,  } from './models/model.js';
 import bcrypt from 'bcrypt';
 
 async function seedDatabase() {
@@ -12,10 +12,10 @@ async function seedDatabase() {
 
         // Seed users
         const users = [
-            { username: 'presales1', password: hashedPassword },
-            { username: 'presales2', password: hashedPassword },
+            { username: 'presales1', password: 'demo123'},
+            { username: 'presales2', password: 'demo123' },
         ];
-        await OAuthUsers.bulkCreate(users);
+        await User.bulkCreate(users);
         console.log('Users seeded!');
 
         // Seed clients
@@ -31,7 +31,7 @@ async function seedDatabase() {
                 grants: 'password,refresh_token',
             },
         ];
-        await OAuthClients.bulkCreate(clients);
+        await Client.bulkCreate(clients);
         console.log('Clients seeded!');
 
         // Optionally seed tokens (can be generated dynamically at runtime)
@@ -43,7 +43,7 @@ async function seedDatabase() {
                 userId: 1,
             },
         ];
-        await OAuthTokens.bulkCreate(tokens);
+        await Token.bulkCreate(tokens);
         console.log('Tokens seeded!');
 
         console.log('Database seeding completed!');

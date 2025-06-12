@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+  namespace: default
+data:
+  IDENT_DB: identitydb-service.default.svc.cluster.local
+  RETAIL_DB: retaildb-service.default.svc.cluster.local
