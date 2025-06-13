@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: auth-api
-          image: mkowalew/auth-api:latest
+          image: retailonlinestore.azurecr.io/auth-api:latest
           env:
             - name: MARIADB_HOST
               valueFrom:
