@@ -19,16 +19,16 @@ spec:
         - name: auth-api
           image: retailonlinestore.azurecr.io/auth-api:latest
           env:
-            - name: MARIADB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: identitydb-secret
-                  key: MARIADB_HOST
+#            - name: MARIADB_HOST
+#              valueFrom:
+#                secretKeyRef:
+#                  name: identitydb-secret
+#                  key: MARIADB_HOST
             - name: MARIADB_USER
               valueFrom:
                 secretKeyRef:
                   name: identitydb-secret
-                  key: MARIADB_ROOT_USER
+                  key: MARIADB_ROOT_USERNAME
             - name: MARIADB_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -41,11 +41,13 @@ spec:
                   key: MARIADB_DATABASE
           ports:
             - containerPort: 3000
+      imagePullSecrets:
+        - name: acr-auth
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service-lb
+  name: auth-api-lb
   namespace: default
 spec:
   type: LoadBalancer
